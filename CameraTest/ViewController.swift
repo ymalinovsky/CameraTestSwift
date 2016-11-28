@@ -8,11 +8,16 @@
 
 import UIKit
 
-class ViewController: UIViewController {
+class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
 
+    @IBOutlet var imageView: UIImageView!
+    
+    var imagePicker = UIImagePickerController()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view, typically from a nib.
+        
+        imagePicker.delegate = self
     }
 
     override func didReceiveMemoryWarning() {
@@ -20,6 +25,14 @@ class ViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
 
+    @IBAction func cameraAction(_ sender: UIBarButtonItem) {
+        imagePicker.sourceType = UIImagePickerControllerSourceType.camera
+        present(imagePicker, animated: true, completion: nil)
+    }
 
+    @IBAction func photoAction(_ sender: UIBarButtonItem) {
+        imagePicker.sourceType = UIImagePickerControllerSourceType.photoLibrary
+        present(imagePicker, animated: true, completion: nil)
+    }
 }
 
